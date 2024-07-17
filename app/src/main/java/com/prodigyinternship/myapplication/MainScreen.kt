@@ -20,6 +20,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.prodigyinternship.myapplication.components.AddToDoItemDialog
+import com.prodigyinternship.myapplication.components.EditToDoItemDialog
 import com.prodigyinternship.myapplication.components.ToDoItemView
 import com.prodigyinternship.myapplication.database.ToDoItemEvent
 import com.prodigyinternship.myapplication.database.ToDoItemState
@@ -55,7 +56,6 @@ fun MainScreen(
         if (state.isAddingNew) {
             AddToDoItemDialog(state = state, onEvent = onEvent)
         }
-
         LazyColumn(
             contentPadding = paddingValues,
             modifier = Modifier
@@ -70,5 +70,9 @@ fun MainScreen(
                 )
             }
         }
+        if (state.isEditing) {
+            EditToDoItemDialog(state = state, onEvent = onEvent)
+        }
+
     }
 }

@@ -7,4 +7,5 @@ data class ToDoItemState(
     val isDone: Boolean = false,
     val isAddingNew: Boolean = false,
     val items: List<TodoItem> = emptyList(),
+    val isEditing: Boolean = false
 )

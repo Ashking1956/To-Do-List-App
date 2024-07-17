@@ -90,7 +90,7 @@ fun ToDoItemView(
                 horizontalArrangement = Arrangement.End,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                IconButton(onClick = { onEvent(ToDoItemEvent.EditToDoItem(toDoItem)) }) {
+                IconButton(onClick = { onEvent(ToDoItemEvent.ShowEditDialog) }) {
                     Icon(imageVector = Icons.Default.Edit, contentDescription = "Edit")
                 }
 

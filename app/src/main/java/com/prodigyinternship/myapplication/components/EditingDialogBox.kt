@@ -15,9 +15,8 @@ import androidx.compose.ui.text.input.KeyboardType
 import com.prodigyinternship.myapplication.database.ToDoItemEvent
 import com.prodigyinternship.myapplication.database.ToDoItemState
 
-
 @Composable
-fun AddToDoItemDialog(
+fun EditToDoItemDialog(
     state: ToDoItemState,
     onEvent: (ToDoItemEvent) -> Unit
 ) {
@@ -31,7 +30,7 @@ fun AddToDoItemDialog(
 
     AlertDialog(
         onDismissRequest = { onEvent(ToDoItemEvent.HideDialog) },
-        title = { Text(text = "Add To-Do Item") },
+        title = { Text(text = "Edit To-Do Item") },
         text = {
             Column {
                 OutlinedTextField(
@@ -66,7 +65,7 @@ fun AddToDoItemDialog(
         },
         dismissButton = {
             Button(
-                onClick = { onEvent(ToDoItemEvent.HideDialog) }
+                onClick = { onEvent(ToDoItemEvent.HideEditDialog) }
             ) {
                 Text("Cancel")
             }

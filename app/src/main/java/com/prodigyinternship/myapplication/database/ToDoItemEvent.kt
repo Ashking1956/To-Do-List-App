@@ -8,6 +8,8 @@ sealed interface ToDoItemEvent {
     data class ToggleDone(val todoItem: TodoItem) : ToDoItemEvent
     data object ShowDialog : ToDoItemEvent
     data object HideDialog : ToDoItemEvent
+    data object ShowEditDialog : ToDoItemEvent
+    data object HideEditDialog : ToDoItemEvent
     data class DeleteToDoItem(val todoItem: TodoItem) : ToDoItemEvent
     data class EditToDoItem(val todoItem: TodoItem) : ToDoItemEvent
 }

@@ -35,15 +35,16 @@ class MainViewModel(
 
                     ToDoItemEvent.SaveToDoItem -> {
                         val toDoItem = TodoItem(
+                            id = 0, // Ensure ID is 0 for new items
                             title = _state.value.title,
                             description = _state.value.description,
                             priority = _state.value.priority,
                             isDone = _state.value.isDone
                         )
-                        if (toDoItem.id == 0) {
-                            dao.addToDoItem(toDoItem)
-                        } else {
+                        if (_state.value.items.any { it.id == toDoItem.id }) {
                             dao.updateToDoItem(toDoItem)
+                        } else {
+                            dao.addToDoItem(toDoItem)
                         }
                         _state.value = _state.value.copy(
                             isAddingNew = false,
@@ -65,6 +66,12 @@ class MainViewModel(
                     is ToDoItemEvent.SetTitle -> {
                         _state.value = _state.value.copy(title = event.title)
                     }
+                    is ToDoItemEvent.ShowEditDialog->{
+                        _state.value = _state.value.copy(isEditing = true)
+                    }
+                    is ToDoItemEvent.HideEditDialog->{
+                        _state.value = _state.value.copy(isEditing = false)
+                    }
 
                     is ToDoItemEvent.EditToDoItem -> {
                         // Update the state to reflect editing mode
@@ -76,6 +83,7 @@ class MainViewModel(
                             isDone = event.todoItem.isDone
                         )
                     }
+
                     ToDoItemEvent.ShowDialog -> {
                         _state.value = _state.value.copy(isAddingNew = true)
                     }
@@ -91,5 +99,4 @@ class MainViewModel(
             }
         }
     }
-
 }
